@@ -1,58 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Yo</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    header {
-      background-image: url('IMG.jpg'); /* 🔁 Use your image filename */
-      background-size: cover;
-      background-position: center;
-      height: 300px; /* Adjust height as needed */
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 3em;
-    }
-
-    header p {
-      font-size: 1.2em;
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>Yooooo</h1>
-    <p>Engineer | Adventurer | Innovator</p>
-  </header>
-
-  <main style="padding: 20px;">
-    <p>Welcome to my site! Explore my work and journey.</p>
-  </main>
-
-</body>
-</html>
-
-
-
-
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Projects</title>
+  <title>Sina Jafari</title>
   <style>
     * {
       box-sizing: border-box;
@@ -63,29 +12,44 @@
       font-family: Arial, sans-serif;
     }
 
-    .header-carousel {
+    .carousel {
       position: relative;
+      width: 100%;
       height: 300px;
       overflow: hidden;
     }
 
-    .slides {
-      display: flex;
-      width: 300%;
-      animation: slide 100s infinite;
-    }
-
-    .slides img {
-      width: 100vw;
-      height: 300px;
+    .carousel img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
 
-    @keyframes slide {
-      0% { transform: translateX(0%); }
-      33% { transform: translateX(-100%); }
-      66% { transform: translateX(-200%); }
-      100% { transform: translateX(0%); }
+    .carousel img.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .carousel .controls {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      z-index: 3;
+    }
+
+    .carousel button {
+      background-color: rgba(0, 0, 0, 0.4);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
     }
 
     .overlay-text {
@@ -96,83 +60,66 @@
       color: white;
       font-size: 2em;
       text-shadow: 2px 2px 5px #000;
+      z-index: 4;
     }
   </style>
 </head>
 <body>
 
-  <div class="header-carousel">
-    <div class="slides">
-      <img src="photo1.png" alt="Slide 1">
-      <img src="photo2.png" alt="Slide 2">
-      <img src="photo3.png" alt="Slide 3">
-      <img src="photo4.png" alt="Slide 4">
-      
+  <div class="carousel" id="carousel">
+    <img src="photo1.jpg" class="active" alt="Slide 1">
+    <img src="photo2.jpg" alt="Slide 2">
+    <img src="photo3.jpg" alt="Slide 3">
+    <img src="photo4.jpg" alt="Slide 4">
+    <div class="overlay-text">Sina Jafari</div>
+
+    <div class="controls">
+      <button onclick="prevSlide()">❮</button>
+      <button onclick="nextSlide()">❯</button>
     </div>
-    <div class="overlay-text">Projects</div>
   </div>
 
   <main style="padding: 20px;">
-    <p>Welcome to my site!</p>
+    <p>Welcome to my personal website!</p>
   </main>
 
+  <script>
+    const images = document.querySelectorAll('.carousel img');
+    let current = 0;
+    let interval = null;
+
+    function showSlide(index) {
+      images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextSlide() {
+      current = (current + 1) % images.length;
+      showSlide(current);
+    }
+
+    function prevSlide() {
+      current = (current - 1 + images.length) % images.length;
+      showSlide(current);
+    }
+
+    function startAutoSlide() {
+      interval = setInterval(nextSlide, 4000);
+    }
+
+    function stopAutoSlide() {
+      clearInterval(interval);
+    }
+
+    // Start slide show
+    startAutoSlide();
+
+    // Pause on hover
+    const carousel = document.getElementById('carousel');
+    carousel.addEventListener('mouseover', stopAutoSlide);
+    carousel.addEventListener('mouseout', startAutoSlide);
+  </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Sina Jafari | Portfolio</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 2em;
-      max-width: 800px;
-      margin: auto;
-      line-height: 1.6;
-    }
-    h1, h2 {
-      color: #333;
-    }
-    a {
-      color: #007acc;
-    }
-    .project {
-      margin-bottom: 2em;
-    }
-  </style>
-</head>
-<body>
-  <h1>Sina Jafari</h1>
-  <p>PhD Candidate in Mechanical Engineering | Adventurer | Researcher in Thermal Systems & Photonics</p>
-
-  <h2>Projects</h2>
-  <div class="project">
-    <h3>High-Efficiency Heat Exchanger</h3>
-    <p>Designed a novel exchanger that cools hot, humid air with 20% better efficiency.</p>
-  </div>
-  <div class="project">
-    <h3>Solar Optimization Algorithm</h3>
-    <p>Developed a physics-based tool that increased solar thermal harvesting efficiency to 93.3%.</p>
-  </div>
-
-  <h2>Contact</h2>
-  <p>Email: sina@example.com</p>
-  <p>GitHub: <a href="https://github.com/sina-jafari">sina-jafari</a></p>
-  <p>LinkedIn: <a href="https://www.linkedin.com/in/sina-jafari-ghalekohneh/">https://linkedin.com/in/sina-jafari-ghalekohneh/</a></p>
-</body>
-</html>
-
-
-
-
