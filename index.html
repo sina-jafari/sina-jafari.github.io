@@ -1,6 +1,184 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Yo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-image: url('IMG.jpg'); /* 🔁 Use your image filename */
+      background-size: cover;
+      background-position: center;
+      height: 300px; /* Adjust height as needed */
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+
+    header p {
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Yooooo</h1>
+    <p>Engineer | Adventurer | Innovator</p>
+  </header>
+
+  <main style="padding: 20px;">
+    <p>Welcome to my site! Explore my work and journey.</p>
+  </main>
+
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Projects</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .header-carousel {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .slides {
+      display: flex;
+      width: 300%;
+      animation: slide 100s infinite;
+    }
+
+    .slides img {
+      width: 100vw;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    @keyframes slide {
+      0% { transform: translateX(0%); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0%); }
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 30%;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 2em;
+      text-shadow: 2px 2px 5px #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-carousel">
+    <div class="slides">
+      <img src="photo1.png" alt="Slide 1">
+      <img src="photo2.png" alt="Slide 2">
+      <img src="photo3.png" alt="Slide 3">
+      <img src="photo4.png" alt="Slide 4">
+      
+    </div>
+    <div class="overlay-text">Sina Jafari</div>
+  </div>
+
+  <main style="padding: 20px;">
+    <p>Welcome to my site!</p>
+  </main>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sina Jafari | Portfolio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2em;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    a {
+      color: #007acc;
+    }
+    .project {
+      margin-bottom: 2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sina Jafari</h1>
+  <p>PhD Candidate in Mechanical Engineering | Adventurer | Researcher in Thermal Systems & Photonics</p>
+
+  <h2>Projects</h2>
+  <div class="project">
+    <h3>High-Efficiency Heat Exchanger</h3>
+    <p>Designed a novel exchanger that cools hot, humid air with 20% better efficiency.</p>
+  </div>
+  <div class="project">
+    <h3>Solar Optimization Algorithm</h3>
+    <p>Developed a physics-based tool that increased solar thermal harvesting efficiency to 93.3%.</p>
+  </div>
+
+  <h2>Contact</h2>
+  <p>Email: sina@example.com</p>
+  <p>GitHub: <a href="https://github.com/sina-jafari">sina-jafari</a></p>
+  <p>LinkedIn: <a href="https://www.linkedin.com/in/sina-jafari-ghalekohneh/">https://linkedin.com/in/sina-jafari-ghalekohneh/</a></p>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
   <title>Sina Jafari</title>
   <style>
     * {
