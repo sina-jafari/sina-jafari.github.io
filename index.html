@@ -49,6 +49,175 @@
 
 
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Website</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* Header with logo and nav */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffffff;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      height: 70px;
+      width: auto;
+    }
+
+    /* Navigation menu */
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav li {
+      position: relative;
+    }
+
+    nav > ul > li > a {
+      text-decoration: none;
+      padding: 10px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    /* Dropdown */
+    nav li ul {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      display: none;
+      background-color: white;
+      border: 1px solid #ddd;
+      min-width: 150px;
+      z-index: 1000;
+    }
+
+    nav li:hover ul {
+      display: block;
+    }
+
+    nav li ul li {
+      width: 100%;
+    }
+
+    nav li ul li a {
+      padding: 10px;
+      display: block;
+      color: #333;
+      text-decoration: none;
+    }
+
+    nav li ul li a:hover {
+      background-color: #f0f0f0;
+    }
+
+    main section {
+      padding: 100px 20px;
+      border-bottom: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.png" alt="My Logo" class="logo" />
+    <nav>
+      <ul>
+        <li>
+          <a href="#">About</a>
+          <ul>
+            <li><a href="#about-me">Me</a></li>
+            <li><a href="#about-project">Project</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Work</a>
+          <ul>
+            <li><a href="#work-research">Research</a></li>
+            <li><a href="#work-coding">Coding</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Contact</a>
+          <ul>
+            <li><a href="#contact-form">Form</a></li>
+            <li><a href="#contact-social">Social</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="about-me">
+      <h2>About Me</h2>
+      <p>This is about me.</p>
+    </section>
+
+    <section id="about-project">
+      <h2>About My Projects</h2>
+      <p>Here are some projects.</p>
+    </section>
+
+    <section id="work-research">
+      <h2>Research</h2>
+      <p>This is my research work.</p>
+    </section>
+
+    <section id="work-coding">
+      <h2>Coding</h2>
+      <p>This is my coding portfolio.</p>
+    </section>
+
+    <section id="contact-form">
+      <h2>Contact Form</h2>
+      <p>Here's a contact form (or info).</p>
+    </section>
+
+    <section id="contact-social">
+      <h2>Social Links</h2>
+      <p>Social media stuff here.</p>
+    </section>
+  </main>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
   <title>Yo</title>
