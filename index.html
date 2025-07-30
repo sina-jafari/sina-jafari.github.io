@@ -49,6 +49,79 @@
 
 
 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sina Jafari</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .header-carousel {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .slides {
+      display: flex;
+      width: 300%;
+      animation: slide 12s infinite;
+    }
+
+    .slides img {
+      width: 100vw;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    @keyframes slide {
+      0% { transform: translateX(0%); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0%); }
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 30%;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 2em;
+      text-shadow: 2px 2px 5px #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-carousel">
+    <div class="slides">
+      <img src="photo1.jpg" alt="Slide 1">
+      <img src="photo2.jpg" alt="Slide 2">
+      <img src="photo3.jpg" alt="Slide 3">
+    </div>
+    <div class="overlay-text">Sina Jafari</div>
+  </div>
+
+  <main style="padding: 20px;">
+    <p>Welcome to my site!</p>
+  </main>
+
+</body>
+</html>
+
+
+
+
+
+
 
 
 
