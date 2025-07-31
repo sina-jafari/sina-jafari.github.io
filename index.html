@@ -1,237 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Sina Jafari</title>
   <style>
     :root {
-      --background-color: #9bdedd;
-      --header-bg: #16213e;
-      --text-color: #e0e1dd;
-      --accent-color: #fca311;
-      --secondary-text: #adb5bd;
-      --button-bg: rgba(252, 163, 17, 0.1);
-      --button-hover: #f77f00;
+      --bg: #FFFFE0;
+      --accent1: #FF7F50;
+      --accent2: #008080;
+      --text: #333333;
+      --hover: #FF6347;
+      --nav-bg: #ffffff;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; margin:0; padding:0; }
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--background-color);
-      color: var(--text-color);
+      font-family: Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
       scroll-behavior: smooth;
     }
-
-    /* Header */
     .top-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      background: var(--nav-bg);
       padding: 10px 20px;
-      background-color: var(--header-bg);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.7);
     }
-
-    .left-section {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .left-section { display:flex; align-items:center; gap:10px; }
     .profile-pic {
-      height: 80px;
-      width: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--accent-color);
+      width:80px; height:80px; border-radius:50%; object-fit:cover;
+      border:3px solid var(--accent2);
     }
+    .name { font-size:1.8em; font-weight:bold; color:var(--accent1); }
 
-    .name {
-      font-size: 1.8em;
-      font-weight: 700;
-      color: var(--accent-color);
-      user-select: none;
-    }
-
-    /* Navigation styles */
     nav ul.navbar {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      background-color: var(--header-bg);
+      list-style:none; display:flex; gap:15px;
     }
-
-    nav ul.navbar > li {
-      position: relative;
-      margin-right: 20px;
+    nav ul.navbar li { position:relative; }
+    nav ul.navbar li a {
+      padding:10px 14px; text-decoration:none; color:var(--accent2);
+      font-weight:600; border-radius:4px;
+      transition: background 0.2s, color 0.2s;
     }
+    nav ul.navbar li a:hover { background: var(--hover); color: var(--bg); }
 
-    nav ul.navbar > li > a {
-      display: block;
-      padding: 14px 16px;
-      text-decoration: none;
-      color: var(--text-color);
-      font-weight: 600;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s, color 0.3s;
-      border-radius: 4px;
-    }
-
-    nav ul.navbar > li > a:hover {
-      background-color: var(--button-hover);
-      color: var(--background-color);
-    }
-
-    /* Dropdown styles */
     .dropdown-menu {
-      display: none;
-      position: absolute;
-      background-color: var(--header-bg);
-      top: 100%;
-      left: 0;
-      min-width: 160px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.7);
-      z-index: 10;
-      border-radius: 4px;
-      list-style: none; /* remove bullets */
-      padding: 0;        /* remove default padding */
-      margin: 0;         /* remove default margin */
+      display:none; position:absolute; top:100%; left:0;
+      background: var(--nav-bg); padding:0; margin:0;
+      list-style:none; border-radius:4px; box-shadow:0 4px 8px rgba(0,0,0,0.1);
     }
-
-    .dropdown-menu li {
-      margin: 0;
-      list-style: none; /* remove bullets from li */
-    }
-
     .dropdown-menu li a {
-      padding: 12px 16px;
-      display: block;
-      color: var(--secondary-text);
-      text-decoration: none;
-      transition: background-color 0.3s, color 0.3s;
-      user-select: none;
-      border-radius: 4px;
+      display:block; padding:8px 12px; color: var(--text);
+      text-decoration:none; transition: background 0.2s;
     }
-
     .dropdown-menu li a:hover {
-      background-color: var(--button-hover);
-      color: var(--accent-color);
+      background: var(--hover); color: var(--bg);
     }
+    .navbar li.dropdown:hover .dropdown-menu { display: block; }
 
-    /* Show dropdown on hover */
-    .navbar li.dropdown:hover > .dropdown-menu {
-      display: block;
-    }
-
-    /* Carousel */
     .carousel {
-      position: relative;
-      width: 100%;
-      height: 300px;
-      overflow: hidden;
-      background-color: #fff; /* white background */
-      margin-top: 20px;
+      position:relative; width:100%; height:300px; background:#fff;
+      margin-top:20px; overflow:hidden;
     }
-
     .carousel img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
+      position:absolute; width:100%; height:100%; object-fit:contain;
+      opacity:0; transition:opacity 1s ease;
     }
-
-    .carousel img.active {
-      opacity: 1;
-      z-index: 2;
-    }
-
-    .carousel .controls {
-      position: absolute;
-      width: 100%;
-      top: 50%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
-      z-index: 3;
-    }
-
-    .carousel button {
-      background-color: var(--button-bg);
-      color: var(--accent-color);
-      border: 1px solid var(--accent-color);
-      padding: 10px 20px;
-      font-size: 18px;
-      cursor: pointer;
-      border-radius: 5px;
-      user-select: none;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .carousel button:hover {
-      background-color: var(--button-hover);
-      color: var(--background-color);
-    }
-
+    .carousel img.active { opacity:1; z-index:2; }
     .overlay-text {
-      position: absolute;
-      top: 30%;
-      width: 100%;
-      text-align: center;
-      color: var(--accent-color);
-      font-size: 2em;
-      text-shadow: 2px 2px 5px #000;
-      z-index: 4;
-      pointer-events: none;
-      user-select: none;
+      position:absolute; top:30%; width:100%; text-align:center;
+      color: var(--accent1); font-size:2em; pointer-events:none;
+    }
+    .controls {
+      position:absolute; top:50%; width:100%; display:flex;
+      justify-content:space-between; transform: translateY(-50%);
+    }
+    .controls button {
+      background:transparent; border:1px solid var(--accent2);
+      color: var(--accent2); padding:8px 16px; font-size:18px;
+      cursor:pointer; border-radius:4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .controls button:hover {
+      background: var(--accent2); color: var(--bg);
     }
 
-    /* Sections */
     section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: 40px auto;
+      max-width:900px; margin:40px auto; padding:0 20px;
     }
-
-    h1, h2 {
-      color: var(--accent-color);
-      margin-top: 0;
-      user-select: none;
-    }
-
-    p {
-      line-height: 1.6;
-      color: var(--text-color);
-    }
-
-    a {
-      color: var(--accent-color);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
+    h2 { color: var(--accent2); margin-bottom:12px; }
+    p { line-height:1.6; margin-bottom:16px; }
+    a { color: var(--accent1); }
+    a:hover { text-decoration:underline; }
 
   </style>
 </head>
 <body>
 
-  <!-- Header -->
   <div class="top-header">
     <div class="left-section">
-      <img src="IMG.jpg" alt="My Photo" class="profile-pic" />
+      <img src="IMG.jpg" alt="Profile" class="profile-pic"/>
       <div class="name">Sina Jafari</div>
     </div>
-
     <nav>
       <ul class="navbar">
         <li><a href="index.html">Home</a></li>
@@ -256,72 +127,45 @@
     </nav>
   </div>
 
-  <!-- Carousel -->
   <div class="carousel" id="carousel">
-    <img src="photo1.png" class="active" alt="Slide 1" />
-    <img src="photo2.png" alt="Slide 2" />
-    <img src="photo3.png" alt="Slide 3" />
-
+    <img src="photo1.png" class="active" alt="Slide 1"/>
+    <img src="photo2.png" alt="Slide 2"/>
+    <img src="photo3.png" alt="Slide 3"/>
     <div class="overlay-text">Sina Jafari</div>
-
     <div class="controls">
       <button onclick="prevSlide()">❮</button>
       <button onclick="nextSlide()">❯</button>
     </div>
   </div>
 
-  <!-- About -->
   <section id="about">
     <h2>About Me</h2>
-    <p>I’m Sina, an engineer with deep curiosity for photonics, coding, and solving hard problems. Outside of the lab, I seek adventure and love to explore places people usually avoid. Creativity and bold thinking drive both my work and my life.</p>
+    <p>I’m Sina, an engineer with a passion for photonics, coding, and adventurous exploration. My goal is to inspire creativity and bold problem-solving through curiosity and courage.</p>
   </section>
 
-  <!-- Gallery -->
   <section id="gallery">
     <h2>Gallery</h2>
-    <p>Here you can explore some of my travel adventures and engineering projects. This section will evolve!</p>
+    <p>This section will showcase snapshots of my travels and projects.</p>
   </section>
 
-  <!-- Contact -->
   <section id="contact">
     <h2>Contact Me</h2>
-    <p>You can find me on <a href="https://www.linkedin.com/in/sina-jafari-ghalekohneh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> or email me directly at sina@example.com.</p>
+    <p>Find me on <a href="https://www.linkedin.com/in/sina-jafari-ghalekohneh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, or email me at sina@example.com.</p>
   </section>
 
   <script>
-    const images = document.querySelectorAll('.carousel img');
-    let current = 0;
-    let interval = null;
-
-    function showSlide(index) {
-      images.forEach((img, i) => {
-        img.classList.toggle('active', i === index);
-      });
-    }
-
-    function nextSlide() {
-      current = (current + 1) % images.length;
-      showSlide(current);
-    }
-
-    function prevSlide() {
-      current = (current - 1 + images.length) % images.length;
-      showSlide(current);
-    }
-
-    function startAutoSlide() {
-      interval = setInterval(nextSlide, 4000);
-    }
-
-    function stopAutoSlide() {
-      clearInterval(interval);
-    }
-
-    startAutoSlide();
-
-    const carousel = document.getElementById('carousel');
-    carousel.addEventListener('mouseover', stopAutoSlide);
-    carousel.addEventListener('mouseout', startAutoSlide);
+    const imgs = document.querySelectorAll('.carousel img');
+    let current = 0, interval;
+    function showSlide(i){ imgs.forEach((img,j)=> img.classList.toggle('active', j===i)); }
+    function nextSlide(){ current = (current+1)%imgs.length; showSlide(current); }
+    function prevSlide(){ current = (current-1+imgs.length)%imgs.length; showSlide(current); }
+    function start(){ interval = setInterval(nextSlide,4000); }
+    function stop(){ clearInterval(interval); }
+    start();
+    const car = document.getElementById('carousel');
+    car.addEventListener('mouseover', stop);
+    car.addEventListener('mouseout', start);
   </script>
+
 </body>
 </html>
