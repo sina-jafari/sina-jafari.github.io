@@ -57,56 +57,61 @@
     }
 
     /* Navigation Bar */
-    nav ul.navbar {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: 25px;
-    }
+   .navbar {
+  position: relative;
+  display: flex;
+  justify-content: flex-end; /* This moves the nav to the top-right */
+  align-items: center;
+  padding: 10px 40px;
+  background-color: var(--nav-bg);
+  z-index: 1000;
+}
 
-    nav ul.navbar li {
-      position: relative;
-    }
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
 
-    nav ul.navbar a {
-      text-decoration: none;
-      color: var(--text-color);
-      font-weight: bold;
-      padding: 8px 10px;
-      transition: background 0.3s, color 0.3s;
-    }
+.navbar li {
+  position: relative;
+  margin: 0 15px;
+}
 
-    nav ul.navbar a:hover {
-      background-color: var(--button-hover);
-      border-radius: 5px;
-    }
+.navbar a {
+  color: var(--nav-link-color);
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+}
 
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 35px;
-      left: 0;
-      background-color: var(--dropdown-bg);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      border-radius: 5px;
-      z-index: 1000;
-      padding: 8px 0;
-      min-width: 160px;
-    }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%; /* Makes sure it appears directly below the nav item */
+  left: 0;
+  background-color: var(--nav-bg);
+  min-width: 160px;
+  z-index: 999;
+}
 
-    .dropdown-menu li {
-      list-style: none;
-    }
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
 
-    .dropdown-menu a {
-      display: block;
-      padding: 10px 15px;
-      white-space: nowrap;
-    }
+.dropdown-menu a {
+  padding: 10px;
+  color: var(--nav-link-color);
+  display: block;
+  text-align: left;
+  text-decoration: none;
+}
 
-    .dropdown:hover .dropdown-menu {
-      display: block;
-    }
+.dropdown-menu a:hover {
+  background-color: var(--nav-hover-bg);
+}
+
 
     /* Description Area */
     .description {
