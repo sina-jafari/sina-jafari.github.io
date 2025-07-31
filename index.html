@@ -38,6 +38,10 @@
       position: relative;
       z-index: 10;
     }
+    .top-section {
+  background-color: #1e2a38; /* 🔷 deep slate blue, change as desired */
+  padding-bottom: 10px;
+}
 
     .left-section {
       display: flex;
@@ -180,11 +184,20 @@
   </style>
 </head>
 <body>
+  
+<header class="top-section">
   <div class="top-header">
-    <div class="left-section">
-      <img src="profile.jpg" alt="My Photo" class="profile-pic">
-      <div class="name">Sina Jafari</div>
-    </div>
+    <img src="IMG.jpg" alt="Sina Jafari" class="profile-pic" />
+    <h1 class="site-title">Sina Jafari</h1>
+  </div>
+
+  <nav class="navbar">
+    <!-- your navigation bar here -->
+  </nav>
+</header>
+
+
+    
     <nav>
       <ul class="navbar">
         <li><a href="index.html">Home</a></li>
