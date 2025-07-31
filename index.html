@@ -57,61 +57,65 @@
     }
 
     /* Navigation Bar */
-   .navbar {
-  position: relative;
-  display: flex;
-  justify-content: flex-end; /* This moves the nav to the top-right */
-  align-items: center;
-  padding: 10px 40px;
-  background-color: var(--nav-bg);
-  z-index: 1000;
-}
+   nav ul.navbar {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background-color: var(--header-bg);
+    }
 
-.navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
+    nav ul.navbar > li {
+      position: relative;
+      margin-right: 20px;
+    }
 
-.navbar li {
-  position: relative;
-  margin: 0 15px;
-}
+    nav ul.navbar > li > a {
+      display: block;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-.navbar a {
-  color: var(--nav-link-color);
-  text-decoration: none;
-  padding: 10px;
-  display: block;
-}
+    nav ul.navbar > li > a:hover {
+      background-color: var(--button-hover);
+      color: var(--accent-color);
+    }
 
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%; /* Makes sure it appears directly below the nav item */
-  left: 0;
-  background-color: var(--nav-bg);
-  min-width: 160px;
-  z-index: 999;
-}
+    /* Dropdown styles */
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: var(--header-bg);
+      top: 100%;
+      left: 0;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      z-index: 10;
+    }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
+    .dropdown-menu li {
+      margin: 0;
+    }
 
-.dropdown-menu a {
-  padding: 10px;
-  color: var(--nav-link-color);
-  display: block;
-  text-align: left;
-  text-decoration: none;
-}
+    .dropdown-menu li a {
+      padding: 12px 16px;
+      display: block;
+      color: var(--text-color);
+      text-decoration: none;
+    }
 
-.dropdown-menu a:hover {
-  background-color: var(--nav-hover-bg);
-}
+    .dropdown-menu li a:hover {
+      background-color: var(--button-hover);
+      color: var(--accent-color);
+    }
 
+    /* Show dropdown on hover */
+    .navbar li.dropdown:hover > .dropdown-menu {
+      display: block;
+    }
 
     /* Description Area */
     .description {
