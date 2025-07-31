@@ -6,12 +6,13 @@
   <title>Sina Jafari</title>
   <style>
     :root {
-      --background-color: #1e2d50;
-      --header-bg: #637db0;
-      --text-color: #e1e7ff;
-      --accent-color: #64ffda;
-      --button-bg: rgba(100, 255, 218, 0.1);
-      --button-hover: rgba(100, 255, 218, 0.3);
+      --background-color: #1a1a2e;
+      --header-bg: #16213e;
+      --text-color: #e0e1dd;
+      --accent-color: #fca311;
+      --secondary-text: #adb5bd;
+      --button-bg: rgba(252, 163, 17, 0.1);
+      --button-hover: #f77f00;
     }
 
     * {
@@ -33,7 +34,7 @@
       justify-content: space-between;
       padding: 10px 20px;
       background-color: var(--header-bg);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.7);
     }
 
     .left-section {
@@ -47,12 +48,14 @@
       width: 80px;
       border-radius: 50%;
       object-fit: cover;
+      border: 2px solid var(--accent-color);
     }
 
     .name {
       font-size: 1.8em;
-      font-weight: bold;
+      font-weight: 700;
       color: var(--accent-color);
+      user-select: none;
     }
 
     /* Navigation styles */
@@ -74,13 +77,16 @@
       padding: 14px 16px;
       text-decoration: none;
       color: var(--text-color);
-      font-weight: bold;
+      font-weight: 600;
       cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s, color 0.3s;
+      border-radius: 4px;
     }
 
     nav ul.navbar > li > a:hover {
       background-color: var(--button-hover);
-      color: var(--accent-color);
+      color: var(--background-color);
     }
 
     /* Dropdown styles */
@@ -91,8 +97,9 @@
       top: 100%;
       left: 0;
       min-width: 160px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.7);
       z-index: 10;
+      border-radius: 4px;
     }
 
     .dropdown-menu li {
@@ -102,8 +109,11 @@
     .dropdown-menu li a {
       padding: 12px 16px;
       display: block;
-      color: var(--text-color);
+      color: var(--secondary-text);
       text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+      user-select: none;
+      border-radius: 4px;
     }
 
     .dropdown-menu li a:hover {
@@ -123,6 +133,7 @@
       height: 300px;
       overflow: hidden;
       background-color: #254b7c;
+      margin-top: 20px;
     }
 
     .carousel img {
@@ -156,10 +167,14 @@
       padding: 10px 20px;
       font-size: 18px;
       cursor: pointer;
+      border-radius: 5px;
+      user-select: none;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     .carousel button:hover {
       background-color: var(--button-hover);
+      color: var(--background-color);
     }
 
     .overlay-text {
@@ -172,26 +187,36 @@
       text-shadow: 2px 2px 5px #000;
       z-index: 4;
       pointer-events: none;
+      user-select: none;
     }
 
+    /* Sections */
     section {
       padding: 40px 20px;
       max-width: 900px;
-      margin: auto;
+      margin: 40px auto;
     }
 
     h1, h2 {
       color: var(--accent-color);
       margin-top: 0;
+      user-select: none;
     }
 
     p {
       line-height: 1.6;
+      color: var(--text-color);
     }
 
     a {
       color: var(--accent-color);
+      text-decoration: none;
     }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
   </style>
 </head>
 <body>
@@ -200,8 +225,9 @@
   <div class="top-header">
     <div class="left-section">
       <img src="IMG.jpg" alt="My Photo" class="profile-pic" />
+      <div class="name">Sina Jafari</div>
     </div>
-    <div class="name">Sina Jafari</div>
+
     <nav>
       <ul class="navbar">
         <li><a href="#home">Home</a></li>
