@@ -2,17 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sina Jafari</title>
   <style>
     :root {
-      --background-color: #f4f5dc;
-      --header-bg: #ffffff;
-      --text-color: #222831;
-      --accent-color: #ff6b6b;
-      --nav-bg: #f4f5dc;
-      --button-bg: rgba(255, 107, 107, 0.1);
-      --button-hover: rgba(255, 107, 107, 0.3);
+      --nav-bg: #1e2a38;
+      --text-light: #f4f4f4;
+      --accent: #00bcd4;
+      --hover: #007c91;
     }
 
     * {
@@ -22,53 +19,45 @@
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--background-color);
-      color: var(--text-color);
-      scroll-behavior: smooth;
+      font-family: Arial, sans-serif;
+      background-color: #f5f7fa;
+      color: #222;
+    }
+
+    header.top-section {
+      background-color: var(--nav-bg);
+      padding-bottom: 10px;
     }
 
     .top-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       padding: 10px 20px;
-      background-color: var(--nav-bg);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      position: relative;
-      z-index: 10;
-    }
-
-
-    .left-section {
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
 
     .profile-pic {
-      height: 100px;
-      width: 100px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      object-fit: cover;
+      margin-right: 15px;
     }
 
-    .name {
-      font-size: 1.6em;
-      font-weight: bold;
-      color: var(--accent-color);
-    }
-
-    nav {
-      position: relative;
-      z-index: 20;
+    .site-title {
+      color: var(--text-light);
+      font-size: 1.8em;
     }
 
     .navbar {
+      background-color: var(--nav-bg);
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    .navbar ul {
       list-style: none;
       display: flex;
       gap: 20px;
-      background-color: var(--nav-bg);
     }
 
     .navbar li {
@@ -76,51 +65,55 @@
     }
 
     .navbar a {
-      display: block;
-      padding: 14px 16px;
+      color: var(--text-light);
       text-decoration: none;
-      color: var(--text-color);
-      font-weight: bold;
+      padding: 8px 12px;
+      display: block;
     }
 
-    .navbar a:hover {
-      background-color: var(--button-hover);
+    .navbar li:hover > ul {
+      display: block;
     }
 
-    .dropdown-menu {
+    .navbar ul ul {
       display: none;
       position: absolute;
-      background-color: var(--header-bg);
       top: 100%;
-      left: 0;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-      z-index: 1000;
       background-color: var(--nav-bg);
+      min-width: 150px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
     }
 
-    .dropdown-menu li {
-      list-style: none;
+    .navbar ul ul li {
+      width: 100%;
     }
 
-    .dropdown:hover .dropdown-menu {
-      display: block;
+    .navbar ul ul a {
+      padding: 10px;
+    }
+
+    .slider-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 0;
     }
 
     .carousel {
       position: relative;
       width: 100%;
-      height: 300px;
+      height: 400px;
       overflow: hidden;
       background-color: white;
-      z-index: 1;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
 
     .carousel img {
       position: absolute;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       opacity: 0;
       transition: opacity 1s ease-in-out;
     }
@@ -141,16 +134,12 @@
     }
 
     .carousel button {
-      background-color: var(--button-bg);
-      color: var(--accent-color);
-      border: 1px solid var(--accent-color);
+      background-color: rgba(0, 0, 0, 0.4);
+      color: white;
+      border: none;
       padding: 10px 20px;
       font-size: 18px;
       cursor: pointer;
-    }
-
-    .carousel button:hover {
-      background-color: var(--button-hover);
     }
 
     .overlay-text {
@@ -158,91 +147,69 @@
       top: 30%;
       width: 100%;
       text-align: center;
-      color: var(--accent-color);
+      color: white;
       font-size: 2em;
       text-shadow: 2px 2px 5px #000;
       z-index: 4;
     }
 
-    section {
-      padding: 40px 20px;
+    main {
       max-width: 900px;
-      margin: auto;
-    }
-
-    h1, h2 {
-      color: var(--accent-color);
-      margin-top: 0;
-    }
-
-    p {
-      line-height: 1.6;
+      margin: 20px auto;
+      padding: 0 20px;
     }
   </style>
 </head>
 <body>
-  
-<div class="top-header">
-    <div class="left-section">
-      <img src="profile.jpg" alt="My Photo" class="profile-pic">
-      <div class="name">Sina Jafari</div>
+
+  <header class="top-section">
+    <div class="top-header">
+      <img src="IMG.jpg" alt="Sina Jafari" class="profile-pic" />
+      <h1 class="site-title">Sina Jafari</h1>
     </div>
-  <nav class="navbar">
-    <!-- your navigation bar here -->
-  </nav>
-</header>
 
-
-    
-    <nav>
-      <ul class="navbar">
-        <li><a href="index.html">Home</a></li>
-        <li class="dropdown">
-          <a href="#">About</a>
-          <ul class="dropdown-menu">
-            <li><a href="bio.html">Biography</a></li>
-            <li><a href="skills.html">Skills</a></li>
-            <li><a href="cv.html">CV</a></li>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#">Projects</a>
+          <ul>
+            <li><a href="project1.html">Project 1</a></li>
+            <li><a href="project2.html">Project 2</a></li>
           </ul>
         </li>
-        <li class="dropdown">
-          <a href="#">Projects</a>
-          <ul class="dropdown-menu">
-            <li><a href="photonics.html">Photonics</a></li>
-            <li><a href="optics.html">Optics</a></li>
-            <li><a href="coding.html">Coding</a></li>
+        <li><a href="#">About</a>
+          <ul>
+            <li><a href="bio.html">Bio</a></li>
+            <li><a href="interests.html">Interests</a></li>
           </ul>
         </li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Contact</a>
+          <ul>
+            <li><a href="email.html">Email</a></li>
+            <li><a href="social.html">Social</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
-  </div>
+  </header>
 
-  <div class="carousel" id="carousel">
-    <img src="photo1.png" class="active" alt="Slide 1">
-    <img src="photo2.png" alt="Slide 2">
-    <img src="photo3.png" alt="Slide 3">
-    <div class="overlay-text"></div>
-    <div class="controls">
-      <button onclick="prevSlide()">❮</button>
-      <button onclick="nextSlide()">❯</button>
+  <div class="slider-wrapper">
+    <div class="carousel" id="carousel">
+      <img src="photo1.png" class="active" alt="Slide 1">
+      <img src="photo2.png" alt="Slide 2">
+      <img src="photo3.png" alt="Slide 3">
+
+      <div class="overlay-text">Welcome to My Portfolio</div>
+
+      <div class="controls">
+        <button onclick="prevSlide()">❮</button>
+        <button onclick="nextSlide()">❯</button>
+      </div>
     </div>
   </div>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I’m Sina, an engineer with deep curiosity for photonics, coding, and solving hard problems. Outside of the lab, I seek adventure and love to explore places people usually avoid. Creativity and bold thinking drive both my work and my life.</p>
-  </section>
-
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <p>Here you can explore some of my travel adventures and engineering projects. This section will evolve!</p>
-  </section>
-
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p>You can find me on <a href="https://www.linkedin.com/in/sina-jafari-ghalekohneh/" style="color: var(--accent-color);">LinkedIn</a> or email me directly at sina@example.com.</p>
-  </section>
+  <main>
+    <p>Hello! I'm Sina Jafari, a passionate engineer and adventurer. This website showcases my projects and interests.</p>
+  </main>
 
   <script>
     const images = document.querySelectorAll('.carousel img');
@@ -273,10 +240,12 @@
       clearInterval(interval);
     }
 
-    startAutoSlide();
     const carousel = document.getElementById('carousel');
     carousel.addEventListener('mouseover', stopAutoSlide);
     carousel.addEventListener('mouseout', startAutoSlide);
+
+    startAutoSlide();
   </script>
+
 </body>
 </html>
