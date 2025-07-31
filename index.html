@@ -73,7 +73,52 @@
     nav a:hover {
       color: var(--accent-color);
     }
+.navbar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background-color: var(--header-bg);
+}
 
+.navbar li {
+  position: relative;
+}
+
+.navbar > li {
+  margin-right: 20px;
+}
+
+.navbar a {
+  display: block;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  background-color: var(--button-hover);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: var(--header-bg);
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+  z-index: 1;
+}
+
+.dropdown-menu li {
+  margin: 0;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
     /* Carousel */
     .carousel {
       position: relative;
