@@ -3,265 +3,342 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery – Sina Jafari</title>
+  <title>Sina Jafari</title>
   <style>
-    :root {
-      --bg-color: #fdfdfd;
-      --text-color: #333;
-      --nav-bg: #007acc;
-      --nav-hover-bg: #005f99;
-      --accent-color: #007acc;
+    :root { 
+      --bg-color: #eaf3fb;
+      --text-color: #2c3e50;
+      --nav-bg: #ffffff;
+      --accent-color: #2c3e50;
+      --dropdown-bg: #ffffff;
+      --button-hover: rgba(230, 126, 34, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: url('images/background.jpg') no-repeat center center fixed;
-      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
       color: var(--text-color);
-      scroll-behavior: smooth;
-      position: relative;
     }
 
-    body::after {
+    body::before {
       content: "";
       position: fixed;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.4); /* Adjust this for lighter or darker overlay */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+        url('yazd4.jpg') no-repeat center center fixed;
+      background-size: cover; 
       z-index: -1;
     }
 
-    nav {
-      width: 100vw;
-      background-color: var(--nav-bg);
-      display: flex;
-      justify-content: center;
-      padding: 12px 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-
-    .nav-container {
-      display: flex;
-      gap: 25px;
-      align-items: center;
-    }
-
-    nav a, .dropdown-button {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 16px;
-      padding: 8px 12px;
-      cursor: pointer;
-    }
-
-    nav a:hover, .dropdown-button:hover {
-      color: #ffdd57;
-    }
-
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-content {
-      display: none;
+    /* Faded background image in header */
+    .top-header::before {
+      content: "";
       position: absolute;
-      top: 38px;
+      top: 0;
       left: 0;
+      height: 100%;
+      width: 100%;
+      background: url('yazd8.jpg') no-repeat center center;
+      background-size: cover;
+      opacity: 0.15;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .top-header {
       background-color: var(--nav-bg);
-      padding: 10px 0;
-      min-width: 160px;
-      border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-
-    .dropdown-content a {
-      display: block;
-      padding: 8px 16px;
-      color: white;
-      text-decoration: none;
-    }
-
-    .dropdown-content a:hover {
-      background-color: var(--nav-hover-bg);
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    .section {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-top: 40px;
-      color: var(--accent-color);
-    }
-
-    .country-list, .state-list {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 30px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+      z-index: 1;
     }
 
-    .country-item, .state-item {
-      background-color: white;
+    .left-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .profile-pic {
+      height: 150px;
+      width: 150px;
+      border-radius: 50%;
+      object-fit: cover;
       border: 2px solid var(--accent-color);
-      padding: 10px 16px;
-      border-radius: 8px;
-      cursor: pointer;
+    }
+
+    .name {
+      font-size: 1.5em;
       font-weight: bold;
       color: var(--accent-color);
-      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
-    .country-item:hover, .state-item:hover {
-      background-color: var(--nav-hover-bg);
-      color: white;
+    .navbar a {
+      font-size: 22px;
     }
 
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 25px;
+    nav ul.navbar {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background-color: var(--nav-bg);
     }
 
-    .photo-grid img {
-      width: 100%;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    nav ul.navbar > li {
+      position: relative;
+      margin-right: 20px;
     }
 
-    .subheading {
-      margin-top: 60px;
+    nav ul.navbar > li > a {
+      display: block;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav ul.navbar > li > a:hover {
+      background-color: var(--button-hover);
       color: var(--accent-color);
-      border-bottom: 2px solid var(--accent-color);
-      padding-bottom: 5px;
     }
 
-    @media (max-width: 600px) {
-      .nav-container {
-        flex-direction: column;
-        gap: 10px;
-      }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #ffffff;
+      top: 100%;
+      left: 0;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      z-index: 9999;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-      .country-item, .state-item {
-        font-size: 14px;
-        padding: 8px 12px;
-      }
+    .dropdown-menu li {
+      margin: 0;
+      padding: 0;
+    }
+
+    .dropdown-menu li a {
+      padding: 12px 16px;
+      display: block;
+      color: var(--text-color);
+      text-decoration: none;
+    }
+
+    .dropdown-menu li a:hover {
+      background-color: var(--button-hover);
+      color: var(--accent-color);
+    }
+
+    .navbar li.dropdown:hover > .dropdown-menu {
+      display: block;
+    }
+
+    .description {
+      text-align: center;
+      padding: 30px 20px 10px;
+      max-width: 800px; 
+      margin: 0 auto;
+      font-size: 1.2em;
+      color: #444;
+    }
+
+    .carousel {
+      position: relative;
+      width: 90%;
+      max-width: 1000px; 
+      height: 280px;
+      margin: 20px auto;
+      background-color: #fff;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .carousel img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .carousel img.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .carousel .controls {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      z-index: 3;
+    }
+
+    .carousel button {
+      background-color: rgba(230, 126, 34, 0.1);
+      color: var(--accent-color);
+      border: none;
+      padding: 8px 16px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .carousel button:hover {
+      background-color: var(--button-hover);
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 30%;
+      width: 100%;
+      text-align: center;
+      color: var(--accent-color);
+      font-size: 2em;
+      text-shadow: 1px 1px 5px #000;
+      z-index: 4;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 900px; 
+      margin: auto;
+    }
+
+    h2 {
+      color: var(--accent-color);
+      margin-bottom: 10px;
+    }
+
+    p {
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="nav-container">
-      <a href="index.html">Home</a>
-      <a href="cv.html">CV</a>
-      <div class="dropdown">
-        <span class="dropdown-button">Projects ▾</span>
-        <div class="dropdown-content">
-          <a href="projects.html">All Projects</a>
-          <a href="quant.html">Quantitative Analysis</a>
-          <a href="code.html">Code Tools</a>
-        </div>
-      </div>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
+  <!-- Header with Profile and Navigation -->
+  <div class="top-header">
+    <div class="left-section">
+      <img src="profile.jpg" alt="My Photo" class="profile-pic">
+      <div class="name">Sina Jafari</div>
     </div>
-  </nav>
+    <nav>
+      <ul class="navbar">
+        <li><a href="#home">Home</a></li>
+        <li class="dropdown">
+          <a href="#about">About</a>
+          <ul class="dropdown-menu">
+            <li><a href="bio">Biography</a></li>
+            <li><a href="skills">Skills</a></li>
+            <li><a href="cv">CV</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#projects">Projects</a>
+          <ul class="dropdown-menu">
+            <li><a href="photonics">Photonics</a></li>
+            <li><a href="/qa">Quantitative Analysis</a></li>
+          </ul>
+        </li>
+        <li><a href="contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
 
-  <!-- MAIN CONTENT -->
-  <div class="section">
-    <h1>Gallery of My Travels</h1>
+  <!-- Description Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I’m Sina, an engineer with deep curiosity for coding, solving hard problems and complex equations. Outside of the lab, I seek adventure and love to explore places people usually avoid.</p>
+  </section>
 
-    <div class="country-list">
-      <a href="#france" class="country-item">France</a>
-      <a href="#japan" class="country-item">Japan</a>
-      <a href="#iran" class="country-item">Iran</a>
-      <a href="#italy" class="country-item">Italy</a>
-      <a href="#usa" class="country-item">United States</a>
-    </div>
+  <!-- Carousel -->
+  <div class="carousel" id="carousel">
+    <img src="photo1.png" class="active" alt="Slide 1">
+    <img src="photo2.png" alt="Slide 2">
+    <img src="photo3.png" alt="Slide 3">
+    <img src="photo4.png" alt="Slide 4">
 
-    <div id="usa-states" class="state-list" style="margin-top: 20px;">
-      <a href="#california" class="state-item">California</a>
-      <a href="#new-york" class="state-item">New York</a>
-      <a href="#texas" class="state-item">Texas</a>
+    <div class="controls">
+      <button onclick="prevSlide()">❮</button>
+      <button onclick="nextSlide()">❯</button>
     </div>
   </div>
 
-  <!-- Country Sections -->
-  <div class="section" id="france">
-    <h2 class="subheading">🇫🇷 France</h2>
-    <div class="photo-grid">
-      <img src="images/france1.jpg" alt="France 1">
-      <img src="images/france2.jpg" alt="France 2">
-    </div>
-  </div>
+  <!-- Gallery Link -->
+  <section id="gallery">
+    <a href="/gallery" style="text-decoration: none; color: inherit; display: block;">
+      <h2>Gallery</h2>
+      <p>Explore my travel adventures and engineering projects!</p>
+    </a>
+  </section>
 
-  <div class="section" id="japan">
-    <h2 class="subheading">🇯🇵 Japan</h2>
-    <div class="photo-grid">
-      <img src="images/japan1.jpg" alt="Japan 1">
-      <img src="images/japan2.jpg" alt="Japan 2">
-    </div>
-  </div>
+  <!-- Contact Link -->
+  <section id="contact">
+    <a href="/contact" style="text-decoration: none; color: inherit; display: block;">
+      <h2>Contact Me</h2>
+      <p>Reach me on <a href="https://www.linkedin.com/in/sina-jafari-ghalekohneh/" style="color: var(--accent-color);">LinkedIn</a> or via email at sinajafari1993@gmail.com.</p>
+    </a>
+  </section>
 
-  <div class="section" id="iran">
-    <h2 class="subheading">🇮🇷 Iran</h2>
-    <div class="photo-grid">
-      <img src="images/iran1.jpg" alt="Iran 1">
-      <img src="images/iran2.jpg" alt="Iran 2">
-    </div>
-  </div>
+  <!-- Carousel JS -->
+  <script>
+    const images = document.querySelectorAll('.carousel img');
+    let current = 0;
+    let interval = null;
 
-  <div class="section" id="italy">
-    <h2 class="subheading">🇮🇹 Italy</h2>
-    <div class="photo-grid">
-      <img src="images/italy1.jpg" alt="Italy 1">
-      <img src="images/italy2.jpg" alt="Italy 2">
-    </div>
-  </div>
+    function showSlide(index) {
+      images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
+    }
 
-  <div class="section" id="usa">
-    <h2 class="subheading">🇺🇸 United States</h2>
-    <p style="margin-top: 0;">Explore by state below.</p>
-  </div>
+    function nextSlide() {
+      current = (current + 1) % images.length;
+      showSlide(current);
+    }
 
-  <div class="section" id="california">
-    <h3 class="subheading">🌴 California</h3>
-    <div class="photo-grid">
-      <img src="images/california1.jpg" alt="California 1">
-      <img src="images/california2.jpg" alt="California 2">
-    </div>
-  </div>
+    function prevSlide() {
+      current = (current - 1 + images.length) % images.length;
+      showSlide(current);
+    }
 
-  <div class="section" id="new-york">
-    <h3 class="subheading">🗽 New York</h3>
-    <div class="photo-grid">
-      <img src="images/newyork1.jpg" alt="New York 1">
-      <img src="images/newyork2.jpg" alt="New York 2">
-    </div>
-  </div>
+    function startAutoSlide() {
+      interval = setInterval(nextSlide, 4000);
+    }
 
-  <div class="section" id="texas">
-    <h3 class="subheading">🤠 Texas</h3>
-    <div class="photo-grid">
-      <img src="images/texas1.jpg" alt="Texas 1">
-      <img src="images/texas2.jpg" alt="Texas 2">
-    </div>
-  </div>
+    function stopAutoSlide() {
+      clearInterval(interval);
+    }
+
+    startAutoSlide();
+    const carousel = document.getElementById('carousel');
+    carousel.addEventListener('mouseover', stopAutoSlide);
+    carousel.addEventListener('mouseout', startAutoSlide);
+  </script>
 
 </body>
 </html>
