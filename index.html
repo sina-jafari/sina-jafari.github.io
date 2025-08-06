@@ -392,7 +392,9 @@
   <!-- Carousel JavaScript -->
 <script>
   const slides = document.querySelectorAll('.tooltip-link');
+  const carousel = document.getElementById('carousel');
   let currentSlide = 0;
+  let intervalId;
 
   function showSlide(index) {
     slides.forEach((slide, i) => {
@@ -410,12 +412,23 @@
     showSlide(currentSlide);
   }
 
-  // Initialize first slide
-  showSlide(currentSlide);
+  function startAutoPlay() {
+    intervalId = setInterval(nextSlide, 4000);
+  }
 
-  // Auto-play every 4 seconds
-  setInterval(nextSlide, 4000);
+  function stopAutoPlay() {
+    clearInterval(intervalId);
+  }
+
+  // Initialize
+  showSlide(currentSlide);
+  startAutoPlay();
+
+  // Pause on hover
+  carousel.addEventListener('mouseenter', stopAutoPlay);
+  carousel.addEventListener('mouseleave', startAutoPlay);
 </script>
+
 
 </body>
 </html>
