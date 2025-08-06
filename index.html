@@ -5,16 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sina Jafari</title>
   <style>
-    .tooltip-link {
+   .tooltip-link {
   position: absolute;
   width: 100%;
   height: 100%;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  display: flex;
+  display: none; /* 👈 Hide non-active slides */
   justify-content: center;
   align-items: flex-end;
   text-decoration: none;
+}
+
+.tooltip-link.active {
+  opacity: 1;
+  display: flex; /* 👈 Show active slide */
+  z-index: 2;
+  pointer-events: auto;
 }
 
 .tooltip-link img {
@@ -384,59 +391,30 @@
 
   <!-- Carousel JavaScript -->
 <script>
-  const links = document.querySelectorAll('.tooltip-link');
-  let currentIndex = 0;
-
-  // ✅ Show the first image on load
-  links[currentIndex].classList.add('active');
-
-  function showSlide(index) {
-    links.forEach((link, i) => {
-      if (i === index) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
-  }
-
-  function nextSlide() {
-    currentIndex = (currentIndex + 1) % links.length;
-    showSlide(currentIndex);
-  }
-
-  function prevSlide() {
-    currentIndex = (currentIndex - 1 + links.length) % links.length;
-    showSlide(currentIndex);
-  }
-</script>
-
-<script>
-  let currentSlide = 0;
   const slides = document.querySelectorAll('.tooltip-link');
-  const totalSlides = slides.length;
+  let currentSlide = 0;
 
   function showSlide(index) {
     slides.forEach((slide, i) => {
-      slide.style.display = i === index ? 'flex' : 'none';
+      slide.classList.toggle('active', i === index);
     });
   }
 
   function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
+    currentSlide = (currentSlide + 1) % slides.length;
     showSlide(currentSlide);
   }
 
   function prevSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
     showSlide(currentSlide);
   }
 
-  // Auto-play: change slide every 4 seconds
-  setInterval(nextSlide, 4000);
-
-  // Initial display
+  // Initialize first slide
   showSlide(currentSlide);
+
+  // Auto-play every 4 seconds
+  setInterval(nextSlide, 4000);
 </script>
 
 </body>
