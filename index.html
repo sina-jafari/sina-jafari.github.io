@@ -5,6 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sina Jafari</title>
   <style>
+    .tooltip-link {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  text-decoration: none;
+}
+
+.tooltip-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tooltip-link.active {
+  opacity: 1;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.custom-tooltip {
+  background-color: rgba(44, 62, 80, 0.9);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 16px;
+  position: absolute;
+  bottom: 20px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+
+.tooltip-link:hover .custom-tooltip {
+  opacity: 1;
+  transform: scale(1.2);
+  font-size: 20px;
+}
+
     :root { 
       --bg-color: #eaf3fb;
       --text-color: #2c3e50;
