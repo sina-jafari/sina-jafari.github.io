@@ -362,40 +362,34 @@
   </section>
 
   <!-- Carousel JavaScript -->
-  <script>
-    const imageLinks = document.querySelectorAll('.carousel a');
-    let current = 0;
-    let interval = null;
+<script>
+  const links = document.querySelectorAll('.tooltip-link');
+  let currentIndex = 0;
 
-    function showSlide(index) {
-      imageLinks.forEach((link, i) => {
-        link.classList.toggle('active', i === index);
-      });
-    }
+  // ✅ Show the first image on load
+  links[currentIndex].classList.add('active');
 
-    function nextSlide() {
-      current = (current + 1) % imageLinks.length;
-      showSlide(current);
-    }
+  function showSlide(index) {
+    links.forEach((link, i) => {
+      if (i === index) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
 
-    function prevSlide() {
-      current = (current - 1 + imageLinks.length) % imageLinks.length;
-      showSlide(current);
-    }
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % links.length;
+    showSlide(currentIndex);
+  }
 
-    function startAutoSlide() {
-      interval = setInterval(nextSlide, 4000);
-    }
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + links.length) % links.length;
+    showSlide(currentIndex);
+  }
+</script>
 
-    function stopAutoSlide() {
-      clearInterval(interval);
-    }
-
-    startAutoSlide();
-    const carousel = document.getElementById('carousel');
-    carousel.addEventListener('mouseover', stopAutoSlide);
-    carousel.addEventListener('mouseout', startAutoSlide);
-  </script>
 
 </body>
 </html>
