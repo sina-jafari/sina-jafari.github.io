@@ -3,189 +3,441 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sina's Carousel</title>
+  <title>Sina Jafari</title>
   <style>
-    body {
+    .tooltip-link {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  text-decoration: none;
+}
+
+.tooltip-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tooltip-link.active {
+  opacity: 1;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.custom-tooltip {
+  background-color: rgba(44, 62, 80, 0.9);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 16px;
+  position: absolute;
+  bottom: 20px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+
+.tooltip-link:hover .custom-tooltip {
+  opacity: 1;
+  transform: scale(1.2);
+  font-size: 20px;
+}
+
+    :root { 
+      --bg-color: #eaf3fb;
+      --text-color: #2c3e50;
+      --nav-bg: #ffffff;
+      --accent-color: #2c3e50;
+      --dropdown-bg: #ffffff;
+      --button-hover: rgba(230, 126, 34, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+        url('yazd6.jpg') no-repeat center center fixed;
+      background-size: cover; 
+      z-index: -1;
+    }
+
+    .top-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: url('yazd8.jpg') no-repeat center center;
+      background-size: cover;
+      opacity: 0.15;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .top-header {
+      background-color: var(--nav-bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+      z-index: 1;
+    }
+
+    .left-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .profile-pic {
+      height: 150px;
+      width: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent-color);
+      position: relative;
+      z-index: 2;
+    }
+
+    .name {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: var(--accent-color);
+    }
+
+    .navbar a {
+      font-size: 22px;
+    }
+
+    nav ul.navbar {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background-color: var(--nav-bg);
+    }
+
+    nav ul.navbar > li {
+      position: relative;
+      margin-right: 20px;
+    }
+
+    nav ul.navbar > li > a {
+      display: block;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav ul.navbar > li > a:hover {
+      background-color: var(--button-hover);
+      color: var(--accent-color);
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #ffffff;
+      top: 100%;
+      left: 0;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      z-index: 9999;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .dropdown-menu li a {
+      padding: 12px 16px;
+      display: block;
+      color: var(--text-color);
+      text-decoration: none;
+    }
+
+    .dropdown-menu li a:hover {
+      background-color: var(--button-hover);
+      color: var(--accent-color);
+    }
+
+    .navbar li.dropdown:hover > .dropdown-menu {
+      display: block;
+    }
+
+    .description {
+      text-align: center;
+      padding: 30px 20px 10px;
+      max-width: 800px; 
+      margin: 0 auto;
+      font-size: 1.2em;
+      color: #444;
     }
 
     .carousel {
       position: relative;
-      width: 100%;
-      max-width: 900px;
-      margin: 50px auto;
+      width: 90%;
+      max-width: 1000px; 
+      height: 280px;
+      margin: 20px auto;
+      background-color: #fff;
       overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     .carousel a {
-      display: none;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      text-decoration: none;
-      transition: transform 0.3s;
-      position: relative;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .carousel a img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .carousel a.active {
-      display: flex;
-    }
-
-    .carousel img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-    }
-
-    .tooltip-link:hover img {
-      transform: scale(1.05);
-    }
-
-    .tooltip-link:hover .custom-tooltip {
       opacity: 1;
-      visibility: visible;
+      z-index: 2;
+      pointer-events: auto;
     }
 
-    .tooltip-link:hover {
-      font-size: 1.1rem;
-    }
-
-    .custom-tooltip {
-      position: absolute;
-      bottom: 12px;
-      left: 12px;
-      background: rgba(0, 0, 0, 0.75);
-      color: #fff;
-      padding: 8px 12px;
-      border-radius: 6px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s;
-      font-size: 0.9rem;
-      max-width: 85%;
-    }
-
-    .controls {
+    .carousel .controls {
       position: absolute;
       width: 100%;
       top: 50%;
       display: flex;
       justify-content: space-between;
       transform: translateY(-50%);
-      padding: 0 20px;
+      z-index: 3;
     }
 
-    .controls button {
-      background: rgba(0,0,0,0.5);
-      color: white;
+    .carousel button {
+      background-color: rgba(230, 126, 34, 0.1);
+      color: var(--accent-color);
       border: none;
-      padding: 10px 16px;
-      font-size: 20px;
+      padding: 8px 16px;
+      font-size: 18px;
       cursor: pointer;
-      border-radius: 8px;
-      transition: background 0.3s;
+      border-radius: 5px;
     }
 
-    .controls button:hover {
-      background: rgba(0,0,0,0.7);
+    .carousel button:hover {
+      background-color: var(--button-hover);
     }
 
-    .multiple-images img {
-      width: 30%;
-      max-width: 200px;
-      height: auto;
+    .overlay-text {
+      position: absolute;
+      top: 30%;
+      width: 100%;
+      text-align: center;
+      color: var(--accent-color);
+      font-size: 2em;
+      text-shadow: 1px 1px 5px #000;
+      z-index: 4;
     }
 
-    @media (max-width: 768px) {
-      .multiple-images img {
-        width: 45%;
-      }
+    section {
+      padding: 40px 20px;
+      max-width: 900px; 
+      margin: auto;
     }
 
-    @media (max-width: 480px) {
-      .multiple-images img {
-        width: 90%;
-      }
+    h2 {
+      color: var(--accent-color);
+      margin-bottom: 10px;
+    }
 
-      .custom-tooltip {
-        font-size: 0.8rem;
-        left: 5px;
-        right: 5px;
-        bottom: 5px;
-      }
+    p {
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
 
-  <div class="carousel" id="carousel">
-    <!-- Slide 1 -->
-    <a href="NSTPV.pdf" download class="tooltip-link active">
-      <img src="photo4.png" alt="Photo 4">
-      <span class="custom-tooltip">Think of a Solar Energy Harvesting System Working 24/7 with 93.3% Efficiency!!!</span>
-    </a>
-
-    <!-- Slide 2 -->
-    <a href="ML_paper.pdf" download class="tooltip-link">
-      <img src="photo2.png" alt="Machine Learning">
-      <span class="custom-tooltip">Machine Learning Helps to Optimize Photonic Structures!</span>
-    </a>
-
-    <!-- Slide 3 -->
-    <a href="coupled_mode_theory.pdf" download class="tooltip-link">
-      <img src="photo3.png" alt="Photo 3">
-      <span class="custom-tooltip">Coupled Mode Theory to Understand the Physics Behind Photonic Structures</span>
-    </a>
-
-    <!-- Slide 4 -->
-    <a href="https://sina-jafari.github.io" target="_blank" class="tooltip-link">
-      <img src="project1.jpg" alt="Photo 5">
-      <span class="custom-tooltip">Check Out my New Solver Code able to Solve Complicated Equations</span>
-    </a>
-
-    <!-- Slide 5 (Multiple Images) -->
-    <a href="https://sina-jafari.github.io" target="_blank" class="tooltip-link">
-      <img src="FDFD1.gif" alt="Image 1" />
-      <img src="fdfd2.gif" alt="Image 2" />
-      <img src="project6.gif" alt="Image 3" />
-      <span class="custom-tooltip">Beautiful Photonics with FDFD</span>
-    </a>
-
-    <div class="controls">
-      <button onclick="prevSlide()">❮</button>
-      <button onclick="nextSlide()">❯</button>
+  <!-- Header with Profile and Navigation -->
+  <div class="top-header">
+    <div class="left-section">
+      <img src="profile.jpg" alt="My Photo" class="profile-pic">
+      <div class="name">Sina Jafari</div>
     </div>
+    <nav>
+      <ul class="navbar">
+        <li><a href="#home">Home</a></li>
+        <li class="dropdown">
+          <a href="#about">About</a>
+          <ul class="dropdown-menu">
+            <li><a href="bio">Biography</a></li>
+            <li><a href="skills">Skills</a></li>
+            <li><a href="cv">CV</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#projects">Projects</a>
+          <ul class="dropdown-menu">
+            <li><a href="photonics">Photonics</a></li>
+            <li><a href="/qa">Quantitative Analysis</a></li>
+          </ul>
+        </li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="contact">Contact</a></li>
+      </ul>
+    </nav>
   </div>
 
-  <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll(".carousel a");
+  <!-- Description Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I’m Sina, an engineer with deep curiosity for coding, solving hard problems and complex equations. Outside of the lab, I seek adventure and love to explore places people usually avoid.</p>
+  </section>
 
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle("active", i === index);
-      });
-    }
+  
+<!-- Carousel Section -->
+<div class="carousel" id="carousel">
+  <!-- Slide 1 -->
+  <a href="NSTPV.pdf" download class="tooltip-link">
+    <img src="photo4.png" alt="Photo 4">
+    <span class="custom-tooltip">Think of a Solar Energy Harvesting System Working 24/7 with 93.3% Efficiency!!!</span>
+  </a>
 
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }
+  <!-- Slide 2 -->
+  <a href="ML_paper.pdf" download class="tooltip-link">
+    <img src="photo2.png" alt="Machine Learning Helps to Optimize Photonic Structures!">
+    <span class="custom-tooltip">Machine Learning Helps to Optimize Photonic Structures!</span>
+  </a>
 
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(currentSlide);
-    }
+  <!-- Slide 3 -->
+  <a href="coupled_mode_theory.pdf" download class="tooltip-link">
+    <img src="photo3.png" alt="Photo 3">
+    <span class="custom-tooltip">Coupled Mode Theory to Understand the Physics Behind Photonic Structures</span>
+  </a>
 
-    // Autoplay every 4 seconds
-    setInterval(nextSlide, 4000);
-  </script>
+  <!-- Slide 4 (broken before, now fixed) -->
+  <a href="project1.pdf" download class="tooltip-link">
+    <img src="project1.jpg" alt="Photo 5">
+    <span class="custom-tooltip">Check Out my New Solver Code able to Solve Complicated Equations</span>
+  </a>
+
+  <!-- Slide 5 (Multiple images in one slide) -->
+  <a href="fdfd_collection.pdf" download class="tooltip-link multiple-images">
+    <img src="FDFD1.gif" alt="Image 1" />
+    <img src="fdfd2.gif" alt="Image 2" />
+    <img src="project6.gif" alt="Image 3" />
+    <span class="custom-tooltip">Beautiful Photonics with FDFD</span>
+  </a>
+
+  <!-- Controls -->
+  <div class="controls">
+    <button onclick="prevSlide()">❮</button>
+    <button onclick="nextSlide()">❯</button>
+  </div>
+</div>
+
+
+
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <a href="/gallery" style="text-decoration: none; color: inherit; display: block;">
+      <h2>Gallery</h2>
+      <p>Explore my travel adventures and engineering projects!</p>
+    </a>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <a href="/contact" style="text-decoration: none; color: inherit; display: block;">
+      <h2>Contact Me</h2>
+      <p>Reach me on <a href="https://www.linkedin.com/in/sina-jafari-ghalekohneh/" style="color: var(--accent-color);">LinkedIn</a> or via email at sinajafari1993@gmail.com.</p>
+    </a>
+  </section>
+
+  <!-- Carousel JavaScript -->
+<script>
+  const links = document.querySelectorAll('.tooltip-link');
+  let currentIndex = 0;
+
+  // ✅ Show the first image on load
+  links[currentIndex].classList.add('active');
+
+  function showSlide(index) {
+    links.forEach((link, i) => {
+      if (i === index) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % links.length;
+    showSlide(currentIndex);
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + links.length) % links.length;
+    showSlide(currentIndex);
+  }
+</script>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.tooltip-link');
+  const totalSlides = slides.length;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.display = i === index ? 'flex' : 'none';
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+  }
+
+  // Auto-play: change slide every 4 seconds
+  setInterval(nextSlide, 4000);
+
+  // Initial display
+  showSlide(currentSlide);
+</script>
 
 </body>
 </html>
