@@ -411,6 +411,33 @@
   }
 </script>
 
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.tooltip-link');
+  const totalSlides = slides.length;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.display = i === index ? 'flex' : 'none';
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+  }
+
+  // Auto-play: change slide every 4 seconds
+  setInterval(nextSlide, 4000);
+
+  // Initial display
+  showSlide(currentSlide);
+</script>
 
 </body>
 </html>
